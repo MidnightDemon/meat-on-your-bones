@@ -159,6 +159,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_bones_yumm_about:
 
+        // bones_yumm_contact
+        if ($pathinfo === '/contact') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_bones_yumm_contact;
+            }
+
+            return array (  '_controller' => 'Bones\\YummBundle\\Controller\\PageController::contactAction',  '_route' => 'bones_yumm_contact',);
+        }
+        not_bones_yumm_contact:
+
         // _welcome
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

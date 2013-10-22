@@ -5,6 +5,9 @@ namespace Bones\YummBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Bones\YummBundle\Entity\Enquiry;
+use Bones\YummBundle\Form\EnquiryType;
+
 class PageController extends Controller
 {
 	public function indexAction()
@@ -15,5 +18,26 @@ class PageController extends Controller
 	public function aboutAction()
 	{
 		return $this->render('BonesYummBundle:Page:about.html.twig');
+	}
+
+	public function contactAction()
+	{
+		$enquiry = new Enquiry();
+		$form = $this->createForm(new EnquiryType(), $enquiry);
+
+		$request = $this->getRequest();
+		if($request->getMethod() == 'POST') {
+			$form->bindRequest($request);
+
+			if($form->isValid()) {
+				//perform some action (email ect)
+				//redirect - this is important to prevent users reposting
+				//the form if they refresh the page
+
+				return $this->redirect($this->generateUrl('BonesYummBundle_contact'));
+			}
+		}
+
+		return $this->render('BonesYummBundle:Page:contact.html.twig', array('form' => $form->createView()));
 	}
 }

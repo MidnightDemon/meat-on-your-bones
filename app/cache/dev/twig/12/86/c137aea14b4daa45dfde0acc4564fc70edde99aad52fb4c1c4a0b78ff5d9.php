@@ -126,7 +126,10 @@ class __TwigTemplate_1286c137aea14b4daa45dfde0acc4564fc70edde99aad52fb4c1c4a0b78
         // line 24
         echo $this->env->getExtension('routing')->getPath("bones_yumm_about");
         echo "\">About</a></li>
-\t\t\t\t\t\t\t\t<li><a href=\"#\">Contact</a></li>
+\t\t\t\t\t\t\t\t<li><a href=\"";
+        // line 25
+        echo $this->env->getExtension('routing')->getPath("bones_yumm_contact");
+        echo "\">Contact</a></li>
 \t\t\t\t\t\t\t</ul>
 \t\t\t\t\t\t</nav>
 \t\t\t\t\t";
@@ -135,13 +138,17 @@ class __TwigTemplate_1286c137aea14b4daa45dfde0acc4564fc70edde99aad52fb4c1c4a0b78
     // line 31
     public function block_blog_title($context, array $blocks = array())
     {
-        echo "<a href=\"#\">Meat on your Bones</a>";
+        echo "<a href=\"";
+        echo $this->env->getExtension('routing')->getPath("bones_yumm_homepage");
+        echo "\">Meat on your Bones</a>";
     }
 
     // line 32
     public function block_blog_tagline($context, array $blocks = array())
     {
-        echo "<a href=\"#\">tiny blog in Symphony</a>";
+        echo "<a href=\"";
+        echo $this->env->getExtension('routing')->getPath("bones_yumm_homepage");
+        echo "\">tiny blog in Symphony</a>";
     }
 
     // line 36
@@ -179,6 +186,6 @@ class __TwigTemplate_1286c137aea14b4daa45dfde0acc4564fc70edde99aad52fb4c1c4a0b78
 
     public function getDebugInfo()
     {
-        return array (  166 => 49,  161 => 44,  158 => 43,  153 => 39,  148 => 36,  142 => 32,  136 => 31,  127 => 24,  123 => 23,  119 => 21,  116 => 20,  110 => 12,  107 => 11,  104 => 10,  98 => 6,  93 => 50,  91 => 49,  86 => 46,  84 => 43,  79 => 40,  77 => 39,  73 => 37,  71 => 36,  64 => 32,  60 => 31,  56 => 29,  54 => 20,  44 => 14,  42 => 10,  35 => 6,  28 => 1,);
+        return array (  173 => 49,  168 => 44,  165 => 43,  160 => 39,  155 => 36,  147 => 32,  139 => 31,  131 => 25,  127 => 24,  123 => 23,  119 => 21,  116 => 20,  110 => 12,  107 => 11,  104 => 10,  98 => 6,  93 => 50,  91 => 49,  86 => 46,  84 => 43,  79 => 40,  77 => 39,  73 => 37,  71 => 36,  64 => 32,  60 => 31,  56 => 29,  54 => 20,  44 => 14,  42 => 10,  35 => 6,  28 => 1,);
     }
 }

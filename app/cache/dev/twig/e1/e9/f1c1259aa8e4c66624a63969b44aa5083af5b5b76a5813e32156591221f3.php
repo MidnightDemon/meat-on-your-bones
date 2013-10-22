@@ -10,6 +10,7 @@ class __TwigTemplate_e1e9f1c1259aa8e4c66624a63969b44aa5083af5b5b76a5813e32156591
         $this->parent = $this->env->loadTemplate("::base.html.twig");
 
         $this->blocks = array(
+            'stylesheets' => array($this, 'block_stylesheets'),
             'sidebar' => array($this, 'block_sidebar'),
         );
     }
@@ -25,9 +26,23 @@ class __TwigTemplate_e1e9f1c1259aa8e4c66624a63969b44aa5083af5b5b76a5813e32156591
     }
 
     // line 4
-    public function block_sidebar($context, array $blocks = array())
+    public function block_stylesheets($context, array $blocks = array())
     {
         // line 5
+        echo "\t";
+        $this->displayParentBlock("stylesheets", $context, $blocks);
+        echo "
+\t<link href=\"";
+        // line 6
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/bonesyumm/css/blog.css"), "html", null, true);
+        echo "\" type=\"text/css\" rel=\"stylesheet\" />
+";
+    }
+
+    // line 9
+    public function block_sidebar($context, array $blocks = array())
+    {
+        // line 10
         echo "\tSidebar content
 ";
     }
@@ -44,6 +59,6 @@ class __TwigTemplate_e1e9f1c1259aa8e4c66624a63969b44aa5083af5b5b76a5813e32156591
 
     public function getDebugInfo()
     {
-        return array (  31 => 5,  28 => 4,);
+        return array (  46 => 10,  43 => 9,  37 => 6,  32 => 5,  29 => 4,);
     }
 }

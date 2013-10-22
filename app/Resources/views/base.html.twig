@@ -22,14 +22,14 @@
 							<ul class="navigation">
 								<li><a href="{{ path('bones_yumm_homepage') }}">Home</a></li>
 								<li><a href="{{ path('bones_yumm_about') }}">About</a></li>
-								<li><a href="#">Contact</a></li>
+								<li><a href="{{ path('bones_yumm_contact') }}">Contact</a></li>
 							</ul>
 						</nav>
 					{% endblock %}
 				</div>
 				<hgroup>
-					<h2>{% block blog_title %}<a href="#">Meat on your Bones</a>{% endblock %}</h2>
-					<h3>{% block blog_tagline %}<a href="#">tiny blog in Symphony</a>{% endblock %}</h3>
+					<h2>{% block blog_title %}<a href="{{ path('bones_yumm_homepage') }}">Meat on your Bones</a>{% endblock %}</h2>
+					<h3>{% block blog_tagline %}<a href="{{ path('bones_yumm_homepage') }}">tiny blog in Symphony</a>{% endblock %}</h3>
 				</hgroup>
 			</header>
 			<section class="main-col">
