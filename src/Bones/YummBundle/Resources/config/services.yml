@@ -1,0 +1,7 @@
+parameters:
+#    bones_yumm.example.class: Bones\YummBundle\Example
+
+services:
+#    bones_yumm.example:
+#        class: %bones_yumm.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

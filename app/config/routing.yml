@@ -1,0 +1,4 @@
+bones_yumm:
+    resource: "@BonesYummBundle/Resources/config/routing.yml"
+    prefix:   /
+

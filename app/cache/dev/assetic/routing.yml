@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: /home/midnight/php/bones/path/app/config/routing_dev.yml
