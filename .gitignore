@@ -8,5 +8,5 @@ vendor/*
 web/uploads/*
 
 #config
-app/config/parameters.ini
-app/config/parameters.yml
+#app/config/parameters.ini
+#app/config/parameters.yml
