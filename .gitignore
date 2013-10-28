@@ -1,0 +1,12 @@
+#bootstrap
+app/bootstrap/*
+
+#symphony
+vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+
+#config
+app/config/parameters.ini
+app/config/parameters.yml

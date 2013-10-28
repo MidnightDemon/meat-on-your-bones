@@ -27,14 +27,14 @@ class PageController extends Controller
 
 		$request = $this->getRequest();
 		if($request->getMethod() == 'POST') {
-			$form->bindRequest($request);
+			$form->bind($request);
 
 			if($form->isValid()) {
 				//perform some action (email ect)
 				//redirect - this is important to prevent users reposting
 				//the form if they refresh the page
 
-				return $this->redirect($this->generateUrl('BonesYummBundle_contact'));
+				return $this->redirect($this->generateUrl('bones_yumm_contact'));
 			}
 		}
 
