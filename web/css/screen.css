@@ -65,15 +65,15 @@ body {
 }
 
 .main-col { 
-	width: 700px; 
+	width: 80%; 
 	display: inline-block; 
-	float: left; 
-	border-right: 1px solid #ccc; 
-	padding: 20px; 
+	float: right; 
+	border-left: 1px solid #ccc; 
+	padding: 10px; 
 	margin-bottom: 20px; 
 }
 
-.sidebar { width: 239px; padding: 10px; display: inline-block; }
+.sidebar { width: 15%; padding: 10px; display: inline-block; }
 
 .main-col a { color: #F48A00; }
 .main-col h1,

@@ -22,25 +22,25 @@ class Enquiry
 	public function getBody() { return $this->body; }
 	public function setBody($body) { $this->body = $body; }	
 
-  public static function loadValidatorMetadata(ClassMetadata $metadata)
-  {
-    $metadata->addPropertyConstraint('name', new Assert\NotBlank());
+	public static function loadValidatorMetadata(ClassMetadata $metadata)
+	{
+		$metadata->addPropertyConstraint('name', new Assert\NotBlank(array('message' => 'ERROR: Please enter a name')));
 
-    $metadata->addPropertyConstraint('email', new Assert\Email(array('message' => 'the email {{ vlaue }} is not a valid email.', 'checkMX' => 'true')));
+		$metadata->addPropertyConstraint('email', new Assert\Email(array('message' => 'ERROR: Please enter a valid email.', 'checkMX' => 'true')));
 
-    $metadata->addPropertyConstraint('subject', new Assert\NotBlank());
-    $metadata->addPropertyConstraint('subject', new Assert\Length(array(
-    	'min' => 2, 
-    	'max' => 20,
-    	'minMessage' => 'Please include a longer subject in your contact form',
-    	'maxMessage' => 'Subject too long',
-    )));
+		$metadata->addPropertyConstraint('subject', new Assert\NotBlank(array('message' => 'ERROR: Please enter a subject')));
+		$metadata->addPropertyConstraint('subject', new Assert\Length(array(
+			'min' => 3, 
+			'max' => 20,
+			'minMessage' => 'ERROR: Please include a longer subject in your contact form',
+			'maxMessage' => 'ERROR: Subject is too long',
+		)));
 
-    $metadata->addPropertyConstraint('body', new Assert\Length(array(
-    	'min' => 2, 
-    	'max' => 50,
-    	'minMessage' => 'Please include a longer message in your contact form',
-    	'maxMessage' => 'Message too long',
-    )));
-  }	
+		$metadata->addPropertyConstraint('body', new Assert\Length(array(
+			'min' => 10, 
+			'max' => 500,
+			'minMessage' => 'ERROR: Please include a longer message in your contact form',
+			'maxMessage' => 'ERROR: Message too long',
+		)));
+	}	
 }

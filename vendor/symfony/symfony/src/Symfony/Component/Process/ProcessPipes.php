@@ -42,17 +42,12 @@ class ProcessPipes
         if ($this->useFiles) {
             $this->fileHandles = array(
                 Process::STDOUT => tmpfile(),
-                Process::STDERR => tmpfile(),
             );
             if (false === $this->fileHandles[Process::STDOUT]) {
                 throw new RuntimeException('A temporary file could not be opened to write the process output to, verify that your TEMP environment variable is writable');
             }
-            if (false === $this->fileHandles[Process::STDERR]) {
-                throw new RuntimeException('A temporary file could not be opened to write the process output to, verify that your TEMP environment variable is writable');
-            }
             $this->readBytes = array(
                 Process::STDOUT => 0,
-                Process::STDERR => 0,
             );
         }
     }
@@ -85,7 +80,7 @@ class ProcessPipes
     }
 
     /**
-     * Closes unix pipes.
+     * Closes Unix pipes.
      *
      * Nothing happens in case file handles are used.
      */
@@ -108,7 +103,8 @@ class ProcessPipes
             return array(
                 array('pipe', 'r'),
                 $this->fileHandles[Process::STDOUT],
-                $this->fileHandles[Process::STDERR],
+                // Use a file handle only for STDOUT. Using for both STDOUT and STDERR would trigger https://bugs.php.net/bug.php?id=65650
+                array('pipe', 'w'),
             );
         }
 
@@ -150,18 +146,18 @@ class ProcessPipes
      */
     public function hasOpenHandles()
     {
-        if ($this->useFiles) {
-            return (Boolean) $this->fileHandles;
+        if (!$this->useFiles) {
+            return (Boolean) $this->pipes;
         }
 
-        return (Boolean) $this->pipes;
+        return (Boolean) $this->pipes && (Boolean) $this->fileHandles;
     }
 
     /**
      * Writes stdin data.
      *
-     * @param Boolean $blocking Whether to use blocking calls or not.
-     * @param string  $stdin    The data to write.
+     * @param Boolean     $blocking Whether to use blocking calls or not.
+     * @param string|null $stdin    The data to write.
      */
     public function write($blocking, $stdin)
     {
@@ -251,6 +247,10 @@ class ProcessPipes
      */
     private function readStreams($blocking, $close = false)
     {
+        if (empty($this->pipes)) {
+            return array();
+        }
+
         $read = array();
 
         $r = $this->pipes;
@@ -260,7 +260,7 @@ class ProcessPipes
         // let's have a look if something changed in streams
         if (false === $n = @stream_select($r, $w, $e, 0, $blocking ? ceil(Process::TIMEOUT_PRECISION * 1E6) : 0)) {
             // if a system call has been interrupted, forget about it, let's try again
-            // otherwise, an error occured, let's reset pipes
+            // otherwise, an error occurred, let's reset pipes
             if (!$this->hasSystemCallBeenInterrupted()) {
                 $this->pipes = array();
             }
